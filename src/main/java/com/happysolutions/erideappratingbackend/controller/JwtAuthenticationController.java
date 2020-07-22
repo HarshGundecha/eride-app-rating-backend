@@ -48,7 +48,6 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getEmail());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-//		System.out.println(userDetails.getUsername()+" is my name");
         User user = userService.getUserFromEmail(userDetails.getUsername());
         Map<String, Object> mymap = Map.of("token", new JwtResponse(token).getToken(), "user", user);
         return ResponseEntity.ok(mymap);
